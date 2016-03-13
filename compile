@@ -1,0 +1,2 @@
+g++ -o test `pkg-config --cflags playerc++` project4.cc `pkg-config --libs playerc++` -lnsl communicate.o
+

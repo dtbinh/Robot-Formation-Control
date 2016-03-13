@@ -1,0 +1,66 @@
+resolution     0.02
+
+include "pioneer.inc"
+include "irobot.inc"
+include "map.inc"
+include "sick.inc"
+
+# configure the GUI window
+window
+(
+  size [ 1000.000 642.000 ] 
+  center [0 0] 
+  scale 24 # pixels per meter
+  show_data 0
+)
+
+floorplan
+( 
+  bitmap "bitmaps/table.png" 
+  map_resolution 0.02
+  size [40.000 18.000 0.600] 
+  name "hospital"
+  color "gray50"
+  gui_grid 1
+  gui_outline 1
+)
+
+define trickedoutpioneer pioneer2dx
+(
+  sicklaser( pose [0 0 0 0 ] )
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+  velocity_bounds [-0.5 0.5 0 0 0 0 -90.0 90.0 ]
+)
+
+trickedoutpioneer
+(
+	color "red"
+	name "p0"
+	pose [-18.05 0.034 0 0.09]
+)
+
+trickedoutpioneer
+(	
+	color "blue"
+	name "p1"
+	pose [-18.05 1.001 0 0.09]	
+)
+
+trickedoutpioneer
+(
+	color "green"
+	name "p2"
+	pose [-18.05 -1.001 0 0.09]
+)
+
+trickedoutpioneer
+(
+	color "cyan"
+	name "p3"
+	pose [-18.05 -2.001 0 0.09]
+)
+
+
+
+
