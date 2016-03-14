@@ -1,6 +1,6 @@
 TO START PROJECT
 1) Create executable with project4.cc (one has been provided as project4)
-	-alternatively you can run the compile script with "./compile"
+	alternatively you can run the compile script with "./compile"
 2) Run "player project4.cfg" in terminal
 3) Open another terminal and run "./project4 2"
 	-This runs the robot leader
