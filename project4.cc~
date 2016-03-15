@@ -42,6 +42,7 @@ void go_followers(PlayerClient** &robots, Position2dProxy** &ppp, int bfd, int l
 					queue<string> &commands){
 	char msg[MAXBUF];
 	Coords coord;
+	int count = 0;
 	bool started = false;//Checks to see if things have started
 	bool change_pauser = true;//Pauses followers when changing from line to diamond
 	broadcast_msg(commands.front(), bfd);
@@ -74,11 +75,20 @@ void go_followers(PlayerClient** &robots, Position2dProxy** &ppp, int bfd, int l
 					ppp[1] -> SetSpeed(.1, 0);
 					sleep(1);
 					change_pauser = false;
+					count = 0;
 				} 
 				else{//Diamond formation
-					ppp[0] -> GoTo(coord.x - 1, coord.y + 0.967, 0);
-					ppp[1] -> GoTo(coord.x - 1, coord.y - 1.035, 0);
-					ppp[2] -> GoTo(coord.x - 2, coord.y, 0);
+					if(!change_pauser && count < 100){
+						ppp[0] -> GoTo(coord.x - .5, coord.y + 0.967, 0);
+						ppp[1] -> GoTo(coord.x - .5, coord.y - 1.035, 0);
+						ppp[2] -> GoTo(coord.x, coord.y, 0);
+						count++;
+					}
+					else{
+						ppp[0] -> GoTo(coord.x - 1, coord.y + 0.967, 0);
+						ppp[1] -> GoTo(coord.x - 1, coord.y - 1.035, 0);
+						ppp[2] -> GoTo(coord.x - 2, coord.y, 0);
+					}
 				}
 			}
 		}
